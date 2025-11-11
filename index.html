@@ -5,27 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vers Le Vin</title>
 
+  <!-- Caslon Antique -->
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
+
+  <!-- Fallback -->
   <style>
-    /* If you have Caslon webfont files (WOFF2/WOFF), place them in /fonts and they will load.
-       Otherwise EB Garamond (Google Fonts) will be used as a fallback. */
-    @font-face {
-      font-family: 'CaslonCustom';
-     <link href="https://www.fontsquirrel.com/.../CaslonAntique.css" rel="stylesheet">
-
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'CaslonCustom';
-      src: url('/fonts/Caslon-Italic.woff2') format('woff2'),
-           url('/fonts/Caslon-Italic.woff') format('woff');
-      font-weight: 400;
-      font-style: italic;
-      font-display: swap;
-    }
-
-    /* Fallback import (used if CaslonCustom isn't available) */
     @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
     :root{
@@ -33,15 +17,15 @@
       --bg: #F3ECDC;
       --nav-gap: 28px;
       --nav-font-size: 18px;
-      --dropdown-bg: rgba(242,240,208,0.98); /* matching background */
+      --dropdown-bg: rgba(242,240,208,0.98);
       --dropdown-border: rgba(89,44,56,0.06);
     }
 
     html,body{ height:100%; margin:0; }
 
-    /* Use Caslon if available, otherwise EB Garamond, otherwise generic serif */
+    /* Use Caslon Antique globally */
     body {
-      font-family: 'CaslonCustom', 'EB Garamond', Georgia, 'Times New Roman', serif;
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
       background-color: var(--bg);
       color: var(--text-color);
       display:flex;
@@ -51,6 +35,10 @@
       overflow-x:hidden;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+    }
+
+    nav ul, nav a, nav button, .brand-title, footer, .dropdown a {
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif !important;
     }
 
     /* Top navigation — converted to semantic list for accessibility */
