@@ -1,112 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Vers Le Vin</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About – Vers Le Vin</title>
 
-<!-- Caslon Antique -->
-<link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
+  <!-- Caslon Antique -->
+  <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
+
+  <!-- Same styling as index.html -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+    :root{
+      --text-color: #592C38;
+      --bg: #F3ECDC;
+      --nav-gap: 28px;
+      --nav-font-size: 18px;
+      --dropdown-bg: rgba(242,240,208,0.98);
+      --dropdown-border: rgba(89,44,56,0.06);
+    }
+
+    body {
+      margin:0;
+      background-color: var(--bg);
+      color: var(--text-color);
+      font-family: 'CaslonAntiqueRegular','EB Garamond',serif;
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      text-align: justify;
+    }
+
+    /* NAVIGATION (identical to index) */
+    nav ul, nav a, nav button {
+      font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
+    }
+
+    .nav-wrap {
+      display:flex;
+      justify-content:center;
+      padding: 18px 24px;
+      background: transparent;
+    }
+
+    nav ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:var(--nav-gap);
+      align-items:center;
+      font-size:var(--nav-font-size);
+    }
+
+    nav li { position:relative; }
+
+    nav a, nav button {
+      color:var(--text-color);
+      text-decoration:none;
+      background:none;
+      border:none;
+      padding:6px 8px;
+      cursor:pointer;
+      font:inherit;
+    }
+
+    nav a:hover, nav button:hover {
+      opacity:0.7;
+    }
+
+    .dropdown {
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      top:calc(100% + 10px);
+      min-width:180px;
+      background:var(--dropdown-bg);
+      border:1px solid var(--dropdown-border);
+      border-radius:6px;
+      padding:8px 0;
+      box-shadow:0 8px 20px rgba(0,0,0,0.04);
+      display:none;
+      z-index:200;
+    }
+
+    .dropdown a {
+      display:block;
+      padding:8px 20px;
+      text-decoration:none;
+      color:var(--text-color);
+      font-size:16px;
+    }
+    .dropdown a:hover { background:rgba(89,44,56,0.06); }
+
+    nav li:hover > .dropdown,
+    nav li:focus-within > .dropdown {
+      display:block;
+    }
+
+    @media(max-width:720px){
+      nav ul { flex-wrap:wrap; gap:12px; }
+      .dropdown { left:0; transform:none; min-width:150px; }
+    }
 <style>
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
-
-:root {
-  --text-color: #592C38;
-  --bg: #F3ECDC;
-  --nav-gap: 28px;
-}
-
-html, body {
-  margin:0;
-  height:100%;
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
-  background-color: var(--bg);
-  color: var(--text-color);
-}
-
-.nav-wrap { display:flex; justify-content:center; padding:18px 24px; }
-nav ul { display:flex; gap:var(--nav-gap); list-style:none; margin:0; padding:0; align-items:center; font-size:18px; }
-nav li { position:relative; }
-nav a, nav button { text-decoration:none; color:var(--text-color); background:none; border:none; padding:6px 8px; cursor:pointer; font:inherit; }
-nav a:hover, nav button:hover { opacity:0.7; }
-
-.dropdown { position:absolute; left:50%; transform:translateX(-50%); top:calc(100%+10px); min-width:180px; background:rgba(242,240,208,0.98); border:1px solid rgba(89,44,56,0.06); border-radius:6px; padding:8px 0; box-shadow:0 8px 20px rgba(0,0,0,0.04); display:none; z-index:200; }
-nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
-.dropdown a { display:block; padding:8px 20px; text-decoration:none; color:var(--text-color); font-size:16px;}
-.dropdown a:hover { background: rgba(89,44,56,0.06); }
-
-.hero {
-  flex:1;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  gap:40px;
-  padding:40px 20px;
-  flex-wrap:wrap;
-}
-
-.logo-container {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  cursor:pointer;
-  flex-shrink:0;
-}
-
-.logo-container .logo {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-/* CONTACT FORM */
-.contact-wrap {
-  max-width: 500px;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  font-size:18px;
-}
-
-.contact-info p { margin:4px 0; }
-
-.contact-form input, .contact-form textarea, .contact-form button {
-  width:100%;
-  font-family:'EB Garamond', serif;
-  border-radius:6px;
-  border:1px solid rgba(89,44,56,0.3);
-  padding:16px;
-  font-size:15px;
-  color:#592C38;
-}
-
-.contact-form button {
-  background:white; border:2px solid #592C38; font-size:18px; cursor:pointer;
-}
-
-/* Responsive */
-@media(max-width:900px){
-  .hero { flex-direction:column; align-items:center; }
-  .logo-container { width:250px; height:250px; }
-  .contact-wrap { max-width:350px; }
-}
-@media(max-width:520px){
-  .logo-container { width:200px; height:200px; }
-  .contact-wrap { max-width:100%; }
-}
-
-footer {
-  margin-top:auto;
-  padding:10px 20px;
-  font-size:14px;
-  display:flex;
-  justify-content:space-between;
-  opacity:0.85;
-}
-
-</style>
-</head>
 <body>
 
 <div class="nav-wrap">
