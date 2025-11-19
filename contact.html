@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About – Vers Le Vin</title>
+  <title>Vers Le Vin</title>
 
   <!-- Caslon Antique -->
   <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
 
-  <!-- Same styling as index.html -->
+  <!-- Fallback -->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
@@ -21,15 +21,20 @@
       --dropdown-border: rgba(89,44,56,0.06);
     }
 
+    html,body{ height:100%; margin:0; }
+
+    /* Use Caslon Antique globally */
     body {
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
       background-color: var(--bg);
       color: var(--text-color);
-      font-family: 'CaslonAntiqueRegular','EB Garamond',serif;
-      -webkit-font-smoothing:antialiased;
-      min-height:100vh;
       display:flex;
       flex-direction:column;
-      text-align: justify;
+      min-height:100vh;
+      position:relative;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     /* NAVIGATION (identical to index) */
