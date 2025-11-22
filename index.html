@@ -19,15 +19,13 @@
       --nav-font-size: 18px;
       --dropdown-bg: rgba(242,240,208,0.98);
       --dropdown-border: rgba(89,44,56,0.06);
-
       --logo-size: 320px;
-      --back-gap: 18px;
     }
 
     html,body{ height:100%; margin:0; }
 
     body {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
       background-color: var(--bg);
       color: var(--text-color);
       display:flex;
@@ -35,63 +33,28 @@
       min-height:100vh;
       position:relative;
       overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     nav ul, nav a, nav button, .brand-title, footer, .dropdown a {
-      font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif !important;
+      font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif !important;
     }
 
-    .nav-wrap {
-      display:flex;
-      justify-content:center;
-      padding: 18px 24px;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display:flex;
-      gap: var(--nav-gap);
-      align-items:center;
-      font-size: var(--nav-font-size);
-    }
-
+    .nav-wrap { display:flex; justify-content:center; padding: 18px 24px; background: transparent; }
+    nav ul { list-style: none; margin: 0; padding: 0; display:flex; gap: var(--nav-gap); align-items:center; font-size: var(--nav-font-size); }
     nav li { position: relative; }
+    nav a, nav button { color: var(--text-color); text-decoration: none; background: none; border: none; padding: 6px 8px; font: inherit; cursor: pointer; }
+    .dropdown { position: absolute; left: 50%; transform: translateX(-50%); top: calc(100% + 10px); min-width: 180px; background: var(--dropdown-bg); border: 1px solid var(--dropdown-border); box-shadow: 0 8px 20px rgba(0,0,0,0.04); border-radius: 6px; padding: 8px 0; display: none; z-index: 200; white-space: nowrap; }
+    .dropdown a { display:block; padding: 8px 20px; text-decoration:none; color: var(--text-color); font-size: 16px; }
+    nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
-    nav a, nav button {
-      color: var(--text-color);
-      text-decoration: none;
-      background: none;
-      border: none;
-      padding: 6px 8px;
-      cursor:pointer;
-      font: inherit;
+    @media (max-width:720px) {
+      .nav-wrap { padding: 12px; }
+      nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
+      .dropdown { left: 0; transform: none; top: calc(100% + 8px); min-width:160px; }
     }
 
-    .dropdown {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: calc(100% + 10px);
-      min-width: 180px;
-      background: var(--dropdown-bg);
-      border: 1px solid var(--dropdown-border);
-      border-radius: 6px;
-      padding: 8px 0;
-      display: none;
-      z-index: 200;
-    }
-
-    nav li:hover > .dropdown,
-    nav li:focus-within > .dropdown { display:block; }
-
-    @media (max-width:720px){
-      nav ul { flex-wrap:wrap; gap:12px; }
-      .dropdown { left:0; transform:none; }
-    }
-
-    /* HERO */
     .hero {
       flex:1;
       display:flex;
@@ -99,124 +62,116 @@
       justify-content:center;
       padding: 40px;
       perspective: 1400px;
+      position:relative;
     }
 
-    .brand-wrap {
-      position: relative;
-      display: inline-block;
-      padding: 20px 56px;
-    }
+    .brand-wrap { position: relative; display: inline-block; padding: 20px 56px; }
 
     .brand {
       display:flex;
-      align-items:center;
+      align-items:flex-end;
+      gap: 40px;
       justify-content:center;
+      text-align:left;
+      user-select:none;
       position: relative;
+      z-index: 4;
     }
 
-    /* FLIP CARD */
     .logo-card {
       width: var(--logo-size);
       height: var(--logo-size);
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 1.4s cubic-bezier(.25,.85,.25,1); /* smoother slower */
-      cursor:pointer;
+      transition: transform 1.2s cubic-bezier(.2,.9,.3,1);
+      cursor: pointer;
+      margin: 0 auto;
       overflow: visible;
-      margin:0 auto;
     }
 
     .logo-card.flipped,
-    .logo-card:hover {
-      transform: rotateY(180deg);
-    }
+    .logo-card:hover { transform: rotateY(180deg); }
 
     .card-face {
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
       display:flex;
       align-items:center;
       justify-content:center;
+      border-radius:8px;
     }
 
+    .card-front { z-index: 2; background: transparent; }
     .card-front img {
-      width:100%;
-      height:100%;
-      object-fit:contain;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display:block;
       border-radius:8px;
-      box-shadow:0 8px 30px rgba(89,44,56,0.06);
+      box-shadow: 0 8px 30px rgba(89,44,56,0.06);
     }
 
     .card-back {
-      transform:rotateY(180deg);
-      flex-direction:column;
-      padding-bottom:var(--back-gap);
+      transform: rotateY(180deg);
+      z-index: 1;
+      overflow: visible;
+      flex-direction: column;
+      padding-bottom: 0;
     }
 
     .back-row {
       display:flex;
-      gap:12px;
+      gap: 12px;
+      align-items:center;
       justify-content:center;
-      align-items:center;
-      width:max-content;
-    }
-
-    /* essay images + captions */
-    .essay-link {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-decoration:none;
+      width: max-content;
+      margin-top: -6px;
     }
 
     .back-row img {
-      height:var(--logo-size);
-      object-fit:cover;
+      height: var(--logo-size);
+      width: auto;
+      object-fit: cover;
       border-radius:6px;
-      box-shadow:0 8px 30px rgba(89,44,56,0.08);
+      box-shadow: 0 8px 30px rgba(89,44,56,0.08);
+      display:block;
     }
 
-    .caption {
-      font-size:14px;
-      margin-top:6px;
-      color:#592C38;
-      opacity:0;
-      transition:opacity .4s ease;
-      pointer-events:none;
-    }
-
-    .essay-link:hover .caption {
-      opacity:1;
-    }
-
-    /* hover hint */
+    /* Hint overlay */
     .hover-hint {
-      text-align:center;
-      font-size:14px;
-      opacity:0.7;
-      margin-top:10px;
-      transition:opacity .5s ease;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: rgba(89,44,56,0.6);
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+    .logo-card.flipped + .hover-hint {
+      opacity: 0;
     }
 
-    .logo-card:hover + .hover-hint,
-    .logo-card.flipped + .hover-hint {
-      opacity:0;
-    }
+    @media (max-width: 900px) { :root { --logo-size: 260px; } .back-row img { height: var(--logo-size); } }
+    @media (max-width: 520px) { :root { --logo-size: 160px; } .back-row { gap:8px; } }
 
     footer {
-      position:absolute;
-      bottom:10px;
-      left:10px;
-      width:calc(100% - 20px);
-      display:flex;
-      justify-content:space-between;
-      font-size:14px;
-      opacity:0.85;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      opacity: 0.85;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100% - 20px);
+      padding-right: 10px;
+      pointer-events: none;
     }
+    footer span { pointer-events: auto; }
+
   </style>
 </head>
-
 <body>
 
   <div class="nav-wrap">
@@ -225,25 +180,25 @@
         <li><a href="index.html">Home</a></li>
         <li>
           <button aria-haspopup="true" aria-expanded="false" id="lantBtn">Lantignié ▾</button>
-          <div class="dropdown">
-            <a href="#">Terrior</a>
-            <a href="#">Associatie</a>
-            <a href="#">Wijnmakers</a>
+          <div class="dropdown" role="menu">
+            <a role="menuitem" href="#">Terrior</a>
+            <a role="menuitem" href="#">Associatie</a>
+            <a role="menuitem" href="#">Wijnmakers</a>
           </div>
         </li>
         <li>
-          <button aria-haspopup="true">Wijnen ▾</button>
+          <button aria-haspopup="true" aria-expanded="false">Wijnen ▾</button>
           <div class="dropdown">
-            <a href="#">Wit</a>
-            <a href="#">Rood</a>
+            <a role="menuitem" href="#">Wit</a>
+            <a role="menuitem" href="#">Rood</a>
           </div>
         </li>
         <li>
-          <button aria-haspopup="true" id="blogBtn">Blog ▾</button>
-          <div class="dropdown">
-            <a href="#">Essays</a>
-            <a href="#">Pairing</a>
-            <a href="#">Beelden</a>
+          <button aria-haspopup="true" aria-expanded="false" id="blogBtn">Blog ▾</button>
+          <div class="dropdown" role="menu">
+            <a role="menuitem" href="#">Essays</a>
+            <a role="menuitem" href="#">Pairing</a>
+            <a role="menuitem" href="#">Beelden</a>
           </div>
         </li>
         <li><a href="about.html">About</a></li>
@@ -253,40 +208,26 @@
   </div>
 
   <main class="hero">
-    <div class="brand-wrap">
+    <div class="brand-wrap" id="brandWrap" aria-hidden="false">
+      <div class="brand" aria-label="Vers Le Vin - logo and title">
 
-      <div class="brand">
-
-        <div class="logo-card" id="logoCard" tabindex="0">
-
-          <div class="card-face card-front">
-            <img src="images/logo-bar VER - border.jpg">
+        <!-- FLIP CARD -->
+        <div class="logo-card" id="logoCard" tabindex="0" aria-live="polite" aria-pressed="false" role="button" title="Hover or press to flip">
+          <!-- front face -->
+          <div class="card-face card-front" aria-hidden="false">
+            <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
           </div>
 
-          <div class="card-face card-back">
-            <div class="back-row">
-              <a class="essay-link" href="essay1.html">
-                <img src="images/essay1.jpg">
-                <span class="caption">Essay 1</span>
-              </a>
-
-              <a class="essay-link" href="essay2.html">
-                <img src="images/essay2.jpg">
-                <span class="caption">Essay 2</span>
-              </a>
-
-              <a class="essay-link" href="essay3.html">
-                <img src="images/essay3.jpg">
-                <span class="caption">Essay 3</span>
-              </a>
+          <!-- back face -->
+          <div class="card-face card-back" aria-hidden="true">
+            <div class="back-row" aria-hidden="false">
+              <a href="Blog/Essays/essay1.html"><img src="images/essay1.jpg" alt="Essay 1"></a>
+              <a href="Blog/Essays/essay2.html"><img src="images/essay2.jpg" alt="Essay 2"></a>
+              <a href="Blog/Essays/essay3.html"><img src="images/essay3.jpg" alt="Essay 3"></a>
             </div>
           </div>
-
         </div>
-
-        <!-- beweeg je muis -->
-        <div class="hover-hint">beweeg je muis</div>
-
+        <span class="hover-hint">Beweeg je muis</span>
       </div>
     </div>
   </main>
@@ -297,45 +238,57 @@
   </footer>
 
   <script>
-    /* dropdown behaviour unchanged */
+    // Dropdown behavior unchanged
     document.addEventListener('DOMContentLoaded', function () {
-      const controls = [
-        { btnId: 'lantBtn' },
-        { btnId: 'blogBtn' }
-      ];
+      const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
       controls.forEach(c => {
         const btn = document.getElementById(c.btnId);
         if (!btn) return;
         btn.addEventListener('click', () => {
           const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', (!expanded).toString());
+          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           const menu = btn.nextElementSibling;
           if (menu) menu.style.display = expanded ? 'none' : 'block';
+        });
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            btn.setAttribute('aria-expanded', 'false');
+            const menu = btn.nextElementSibling;
+            if (menu) menu.style.display = 'none';
+            btn.blur();
+          }
+        });
+      });
+      document.addEventListener('click', (e) => {
+        controls.forEach(c => {
+          const btn = document.getElementById(c.btnId);
+          if (!btn) return;
+          const menu = btn.nextElementSibling;
+          if (!menu) return;
+          if (!btn.contains(e.target) && !menu.contains(e.target)) {
+            btn.setAttribute('aria-expanded', 'false');
+            menu.style.display = 'none';
+          }
         });
       });
     });
 
-    /* flip-card aria sync */
+    // Flip-card behaviour
     (function () {
       const card = document.getElementById('logoCard');
-
-      card.addEventListener('mouseenter', () => {
-        card.classList.add('flipped');
-      });
-      card.addEventListener('mouseleave', () => {
-        card.classList.remove('flipped');
-      });
-
-      card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
-      });
-
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
+      function toggleFlip(force) {
+        if (typeof force === 'boolean') {
+          card.classList.toggle('flipped', force);
+          card.setAttribute('aria-pressed', force.toString());
+        } else {
           card.classList.toggle('flipped');
+          card.setAttribute('aria-pressed', card.classList.contains('flipped').toString());
         }
-      });
+      }
+      card.addEventListener('click', () => toggleFlip());
+      card.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleFlip(); }});
+      card.addEventListener('mouseenter', () => { card.classList.add('flipped'); card.setAttribute('aria-pressed','true'); });
+      card.addEventListener('mouseleave', () => { card.classList.remove('flipped'); card.setAttribute('aria-pressed','false'); });
     })();
   </script>
 
