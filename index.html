@@ -129,13 +129,27 @@
       margin-top: -6px;
     }
 
-    .back-row img {
+    .back-item {
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .back-item img {
       height: var(--logo-size);
       width: auto;
       object-fit: cover;
       border-radius:6px;
       box-shadow: 0 8px 30px rgba(89,44,56,0.08);
       display:block;
+    }
+
+    .back-item span {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--text-color);
+      font-family: 'EB Garamond', serif;
     }
 
     /* Hint overlay */
@@ -149,9 +163,7 @@
       pointer-events: none;
       transition: opacity 0.8s ease;
     }
-    .logo-card.flipped + .hover-hint {
-      opacity: 0;
-    }
+    .logo-card.flipped + .hover-hint { opacity: 0; }
 
     @media (max-width: 900px) { :root { --logo-size: 260px; } .back-row img { height: var(--logo-size); } }
     @media (max-width: 520px) { :root { --logo-size: 160px; } .back-row { gap:8px; } }
@@ -221,9 +233,18 @@
           <!-- back face -->
           <div class="card-face card-back" aria-hidden="true">
             <div class="back-row" aria-hidden="false">
-              <a href="Blog/Essays/essay1.html"><img src="images/essay1.jpg" alt="Essay 1"></a>
-              <a href="Blog/Essays/essay2.html"><img src="images/essay2.jpg" alt="Essay 2"></a>
-              <a href="Blog/Essays/essay3.html"><img src="images/essay3.jpg" alt="Essay 3"></a>
+              <div class="back-item">
+                <a href="Blog/Essays/essay1.html"><img src="images/essay1.jpg" alt="Essay 1"></a>
+                <span>Essay 1</span>
+              </div>
+              <div class="back-item">
+                <a href="Blog/Essays/essay2.html"><img src="images/essay2.jpg" alt="Essay 2"></a>
+                <span>Essay 2</span>
+              </div>
+              <div class="back-item">
+                <a href="Blog/Essays/essay3.html"><img src="images/essay3.jpg" alt="Essay 3"></a>
+                <span>Essay 3</span>
+              </div>
             </div>
           </div>
         </div>
@@ -238,7 +259,6 @@
   </footer>
 
   <script>
-    // Dropdown behavior unchanged
     document.addEventListener('DOMContentLoaded', function () {
       const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
       controls.forEach(c => {
@@ -250,14 +270,7 @@
           const menu = btn.nextElementSibling;
           if (menu) menu.style.display = expanded ? 'none' : 'block';
         });
-        btn.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            btn.setAttribute('aria-expanded', 'false');
-            const menu = btn.nextElementSibling;
-            if (menu) menu.style.display = 'none';
-            btn.blur();
-          }
-        });
+        btn.addEventListener('keydown', (e) => { if (e.key==='Escape') { btn.setAttribute('aria-expanded','false'); const menu=btn.nextElementSibling;if(menu)menu.style.display='none';btn.blur();}});
       });
       document.addEventListener('click', (e) => {
         controls.forEach(c => {
@@ -273,7 +286,6 @@
       });
     });
 
-    // Flip-card behaviour
     (function () {
       const card = document.getElementById('logoCard');
       function toggleFlip(force) {
