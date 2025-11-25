@@ -106,13 +106,14 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 }
 /* CONTACT PAGE — FLIPPING LOGO */
 .flip-logo-container {
-  width: 240px;
-  height: 240px;
-  margin: 0 auto;          /* centers horizontally */
-  margin-top: 20px;        /* move logo down */
-  position: relative;      /* no absolute positioning */
+  width: 300px;
+  height: 300px;
+  perspective: 1000px;
+  position: absolute;
+  left: 80%;
+  transform: translateX(-140%);
+  top: 300px; /* adjust up/down */
 }
-
 
 .flip-logo {
   width: 100%;
@@ -189,7 +190,8 @@ footer {
 </nav>
 </div>
 
-<main class="content-wrap contact-wrap" style=" max-width: 600px; margin: 20px auto; text-align: center; display: flex; flex-direction: column; gap: 20px; font-size: 17px; ">
+<main class="content-wrap contact-wrap" style=" max-width: 600px; margin: 20px auto; text-align: left; up: 300px;
+  display: flex; flex-direction: column; gap: 20px; font-size: 17px; ">
   
   <!-- FLIPPING MAIN LOGO -->
 <div class="flip-logo-container">
