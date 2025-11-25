@@ -4,12 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Vers Le Vin</title>
+
 <!-- Caslon Antique -->
 <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/caslon-antique" type="text/css"/>
-<!-- Fallback -->
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
-:root{
+
+:root {
   --text-color: #592C38;
   --bg: #F3ECDC;
   --nav-gap: 28px;
@@ -17,102 +19,103 @@
   --dropdown-bg: rgba(242,240,208,0.98);
   --dropdown-border: rgba(89,44,56,0.06);
 }
-html,body{
-  height:100%;
-  margin:0;
+
+html, body {
+  margin: 0;
+  height: 100%;
 }
-/* Use Caslon Antique globally */
+
 body {
-  font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif;
   background-color: var(--bg);
   color: var(--text-color);
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
-  position:relative;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-/* NAVIGATION (identical to index) */
+
+/* NAVIGATION */
 nav ul, nav a, nav button {
-  font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
+  font-family: 'CaslonAntiqueRegular', 'EB Garamond', serif !important;
 }
+
 .nav-wrap {
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   padding: 18px 24px;
-  background: transparent;
 }
+
 nav ul {
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:flex;
-  gap:var(--nav-gap);
-  align-items:center;
-  font-size:var(--nav-font-size);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--nav-gap);
+  font-size: var(--nav-font-size);
+  align-items: center;
 }
-nav li { position:relative; }
+
 nav a, nav button {
-  color:var(--text-color);
-  text-decoration:none;
-  background:none;
-  border:none;
-  padding:6px 8px;
-  cursor:pointer;
-  font:inherit;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 6px 8px;
+  cursor: pointer;
 }
-nav a:hover, nav button:hover { opacity:0.7; }
+
+nav a:hover, nav button:hover {
+  opacity: 0.7;
+}
+
+nav li { position: relative; }
+
 .dropdown {
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  top:calc(100% + 10px);
-  min-width:180px;
-  background:var(--dropdown-bg);
-  border:1px solid var(--dropdown-border);
-  border-radius:6px;
-  padding:8px 0;
-  box-shadow:0 8px 20px rgba(0,0,0,0.04);
-  display:none;
-  z-index:200;
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 10px);
+  min-width: 180px;
+  background: var(--dropdown-bg);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 6px;
+  padding: 8px 0;
 }
+
+nav li:hover > .dropdown {
+  display: block;
+}
+
 .dropdown a {
-  display:block;
-  padding:8px 20px;
-  text-decoration:none;
-  color:var(--text-color);
-  font-size:16px;
+  display: block;
+  padding: 8px 20px;
+  color: var(--text-color);
+  text-decoration: none;
 }
-.dropdown a:hover { background:rgba(89,44,56,0.06); }
-nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
-@media(max-width:720px){
-  nav ul { flex-wrap:wrap; gap:12px; }
-  .dropdown { left:0; transform:none; min-width:150px; }
+
+.dropdown a:hover {
+  background: rgba(89,44,56,0.06);
 }
-/* ABOUT PAGE CONTENT */
+
+/* CONTACT PAGE LAYOUT */
 .content-wrap {
-  margin-right: 10px;
+  max-width: 600px;
+  margin: 20px auto;
   padding: 0 24px;
-  font-size:17px;
-  line-height:1.55;
+  line-height: 1.55;
 }
-.content-wrap h1 {
-  font-size:17px;
-  margin-bottom:5px;
-  margin-left:0px;
-  font-weight:400;
-}
-/* CONTACT PAGE — FLIPPING LOGO */
+
+/* FLIPPING LOGO */
 .flip-logo-container {
   width: 260px;
   height: 260px;
   perspective: 1000px;
   position: absolute;
   left: 50%;
-  transform: translateX(-140%);
-  top: 180px; /* adjust up/down */
+  top: 210px;
+  transform: translateX(-180%);
 }
 
 .flip-logo {
@@ -120,7 +123,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 1.3s ease;
+  transition: transform 1.4s ease;
 }
 
 .flip-logo:hover {
@@ -134,8 +137,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   backface-visibility: hidden;
 }
 
-.flip-front img,
-.flip-back img {
+.flip-face img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -145,43 +147,45 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   transform: rotateY(180deg);
 }
 
+/* FOOTER */
 footer {
-  margin-top:auto;
-  padding:10px 20px;
-  font-size:14px;
-  display:flex;
-  justify-content:space-between;
-  opacity:0.85;
+  margin-top: auto;
+  padding: 10px 20px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
 }
 </style>
 </head>
+
 <body>
-<!-- NAVIGATION (same as index.html) -->
+
+<!-- NAVIGATION -->
 <div class="nav-wrap">
 <nav aria-label="Main Navigation">
   <ul>
     <li><a href="index.html">Home</a></li>
     <li>
-      <button aria-haspopup="true" aria-expanded="false" id="lantBtn">Lantignié ▾</button>
-      <div class="dropdown" role="menu">
-        <a role="menuitem" href="#">Terrior</a>
-        <a role="menuitem" href="#">Associatie</a>
-        <a role="menuitem" href="#">Wijnmakers</a>
-      </div>
-    </li>
-    <li>
-      <button aria-haspopup="true" aria-expanded="false">Wijnen ▾</button>
+      <button>Lantignié ▾</button>
       <div class="dropdown">
-        <a role="menuitem" href="#">Wit</a>
-        <a role="menuitem" href="#">Rood</a>
+        <a href="#">Terrior</a>
+        <a href="#">Associatie</a>
+        <a href="#">Wijnmakers</a>
       </div>
     </li>
     <li>
-      <button aria-haspopup="true" aria-expanded="false" id="blogBtn">Blog ▾</button>
-      <div class="dropdown" role="menu">
-        <a role="menuitem" href="#">Essays</a>
-        <a role="menuitem" href="#">Pairing</a>
-        <a role="menuitem" href="#">Beelden</a>
+      <button>Wijnen ▾</button>
+      <div class="dropdown">
+        <a href="#">Wit</a>
+        <a href="#">Rood</a>
+      </div>
+    </li>
+    <li>
+      <button>Blog ▾</button>
+      <div class="dropdown">
+        <a href="#">Essays</a>
+        <a href="#">Pairing</a>
+        <a href="#">Beelden</a>
       </div>
     </li>
     <li><a href="about.html">About</a></li>
@@ -190,48 +194,64 @@ footer {
 </nav>
 </div>
 
-<main class="content-wrap contact-wrap" style=" max-width: 600px; margin: 20px auto; text-align: left; display: flex; flex-direction: column; gap: 20px; font-size: 17px; ">
-  
-  <!-- FLIPPING MAIN LOGO -->
-<div class="flip-logo-container">
-  <div class="flip-logo">
-    <div class="flip-face flip-front">
-      <img src="images/logo-stijn.png" alt="Main Logo">
-    </div>
-    <div class="flip-face flip-back">
-      <img src="images/logo-bar back.png" alt="Back Logo">
-    </div>
-  </div>
-</div>
+<!-- MAIN CONTENT -->
+<main class="content-wrap">
 
-<!-- TOP SECTION: Contact Info above form -->
-<div class="contact-info" style="width:100%; text-align:left; line-height:1.6;">
-  <p><strong>You can find us on:</strong></p>
-  <p><strong>Address.</strong><br> Ghent, Belgium</p>
-  <p><strong>Tel.</strong><br> +32 476 30 22 07</p>
-  <p><strong>Email.</strong><br> info@vers-le-vin.be</p>
-  <p><strong>Instagram.</strong><br> @vers.le.vin</p>
-</div>
+  <!-- FLIPPING LOGO -->
+  <div class="flip-logo-container">
+    <div class="flip-logo">
+      <div class="flip-face flip-front">
+        <img src="images/logo-stijn.jpg" alt="Main Logo">
+      </div>
+      <div class="flip-face flip-back">
+        <img src="images/logo-bar back.jpg" alt="Back Logo">
+      </div>
+    </div>
+  </div>
 
-<!-- CONTACT FORM centered below info -->
-<form class="contact-form" action="mailto:info@vers-le-vin.be" method="post" enctype="text/plain" style=" width:500px; display:flex; flex-direction:column; gap:22px; font-size:17px; ">
-  <div>
-    <label>Naam</label>
-    <input type="text" name="name" required style=" width:500px; padding:16px; border:1px solid rgba(89,44,56,0.3); border-radius:6px; font-family:'EB Garamond', serif; color:#592C38; font-size:17px; ">
+  <!-- CONTACT INFO -->
+  <div class="contact-info" style="line-height: 1.6;">
+    <p><strong>You can find us on:</strong></p>
+    <p><strong>Address.</strong><br> Ghent, Belgium</p>
+    <p><strong>Tel.</strong><br> +32 476 30 22 07</p>
+    <p><strong>Email.</strong><br> info@vers-le-vin.be</p>
+    <p><strong>Instagram.</strong><br> @vers.le.vin</p>
   </div>
-  <div>
-    <label>Email</label>
-    <input type="email" name="email" required style=" width:500px; padding:16px; border:1px solid rgba(89,44,56,0.3); border-radius:6px; font-family:'EB Garamond', serif; color:#592C38; font-size:17px; ">
-  </div>
-  <div>
-    <label>Message</label>
-    <textarea name="message" required style=" width:500px; padding:16px; height:200px; border:1px solid rgba(89,44,56,0.3); border-radius:6px; font-family:'EB Garamond', serif; color:#592C38; font-size:17px; "></textarea>
-  </div>
-  <button type="submit" style=" background:white; color:#592C38; border:2px solid #592C38; padding:16px 34px; font-size:18px; border-radius:6px; cursor:pointer; "> Send </button>
-</form>
+
+  <!-- CONTACT FORM -->
+  <form action="mailto:info@vers-le-vin.be" method="post" enctype="text/plain"
+        style="width: 500px; display: flex; flex-direction: column; gap: 22px;">
+    
+    <div>
+      <label>Naam</label>
+      <input type="text" name="name" required
+             style="width: 500px; padding: 16px; border:1px solid rgba(89,44,56,0.3); border-radius: 6px;">
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="email" name="email" required
+             style="width: 500px; padding: 16px; border:1px solid rgba(89,44,56,0.3); border-radius: 6px;">
+    </div>
+
+    <div>
+      <label>Message</label>
+      <textarea name="message" required
+                style="width: 500px; height: 200px; padding: 16px; border:1px solid rgba(89,44,56,0.3); border-radius: 6px;"></textarea>
+    </div>
+
+    <button type="submit"
+            style="background:white; color:#592C38; border:2px solid #592C38; padding:16px 34px; font-size:18px; border-radius:6px; cursor:pointer;">
+      Send
+    </button>
+  </form>
+
 </main>
 
 <footer>
   <span>© 2025 Vers Le Vin</span>
   <span>by Stijn Verschelden</span>
 </footer>
+
+</body>
+</html>
