@@ -38,7 +38,7 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-  /* NAVIGATION (identical to index) */
+  /* NAVIGATION */
 nav ul, nav a, nav button {
   font-family: 'CaslonAntiqueRegular','EB Garamond',serif !important;
 }
@@ -96,12 +96,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   .dropdown { left:0; transform:none; min-width:150px; }
 }
 
-    @media (max-width:720px) {
-      .nav-wrap { padding: 12px; }
-      nav ul { gap: 12px; flex-wrap: wrap; justify-content: center; }
-      .dropdown { left: 0; transform: none; top: calc(100% + 8px); min-width:160px; }
-    }
-
     .hero {
       flex:1;
       display:flex;
@@ -149,12 +143,10 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       border-radius:8px;
     }
 
-    .card-front { z-index: 2; background: transparent; }
     .card-front img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-
     }
 
     .card-back {
@@ -197,7 +189,6 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       font-family: 'EB Garamond', serif;
     }
 
-    /* Hint overlay */
     .hover-hint {
       position: absolute;
       bottom: -20px;
@@ -211,8 +202,15 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
     .logo-card.flipped + .hover-hint { opacity: 0; }
 
-    @media (max-width: 900px) { :root { --logo-size: 260px; } .back-row img { height: var(--logo-size); } }
-    @media (max-width: 520px) { :root { --logo-size: 160px; } .back-row { gap:8px; } }
+    @media (max-width: 900px) { 
+      :root { --logo-size: 260px; } 
+      .back-row img { height: var(--logo-size); } 
+    }
+
+    @media (max-width: 520px) { 
+      :root { --logo-size: 160px; } 
+      .back-row { gap:8px; } 
+    }
 
     footer {
       position: absolute;
@@ -228,43 +226,67 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     }
     footer span { pointer-events: auto; }
 
-    /* --- MOBILE (max 768px) --- */
-@media (max-width: 768px) {
 
-  /* Make the main container narrower and centered */
-  main {
-    padding: 20px;
-    text-align: center;
-  }
+/* ------------------------------------------------ */
+/* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
+/* ------------------------------------------------ */
+@media (max-width: 720px) {
 
-  /* Stack elements vertically instead of side-by-side */
-  .wine-row {
+  .hero {
+    padding: 30px 10px;
+    padding-top: 70px;
     flex-direction: column;
-    gap: 30px;
-    margin-top: 40px; /* adjust as needed */
   }
 
-  /* Resize flipping logos */
-  .wine-flip-container {
-    width: 220px;
-    height: 220px;
+  :root {
+    --logo-size: 200px;
   }
 
-  /* Make text smaller and centered */
-  h1, h2, h3, p {
+  .brand {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
     text-align: center;
+  }
+
+  .brand-wrap {
+    padding: 10px;
+  }
+
+  .back-item img {
+    height: 150px;
+  }
+
+  .back-row {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hover-hint {
+    bottom: -12px;
+    font-size: 12px;
+  }
+
+  footer {
+    position: static;
+    margin-top: 40px;
+    text-align: center;
+    flex-direction: column;
+    gap: 4px;
   }
 }
 
-
   </style>
 </head>
+
 <body>
 
   <div class="nav-wrap">
     <nav aria-label="Main Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
+
         <li>
           <button aria-haspopup="true" aria-expanded="false" id="lantBtn">Lantignié ▾</button>
           <div class="dropdown" role="menu">
@@ -273,14 +295,14 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
             <a role="menuitem" href="#">Wijnmakers</a>
           </div>
         </li>
-        
+
         <li>
-  <a href="wijnen.html">Wijnen ▾</a>
-  <div class="dropdown">
-    <a role="menuitem" href="wit.html">Wit</a>
-    <a role="menuitem" href="rood.html">Rood</a>
-  </div>
-</li>
+          <a href="wijnen.html">Wijnen ▾</a>
+          <div class="dropdown">
+            <a role="menuitem" href="wit.html">Wit</a>
+            <a role="menuitem" href="rood.html">Rood</a>
+          </div>
+        </li>
 
         <li>
           <button aria-haspopup="true" aria-expanded="false" id="blogBtn">Blog ▾</button>
@@ -290,42 +312,44 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
             <a role="menuitem" href="#">Beelden</a>
           </div>
         </li>
+
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
+
       </ul>
     </nav>
   </div>
 
   <main class="hero">
-    <div class="brand-wrap" id="brandWrap" aria-hidden="false">
-      <div class="brand" aria-label="Vers Le Vin - logo and title">
+    <div class="brand-wrap" id="brandWrap">
 
-        <!-- FLIP CARD -->
-        <div class="logo-card" id="logoCard" tabindex="0" aria-live="polite" aria-pressed="false" role="button" title="Hover or press">
-          <!-- front face -->
-          <div class="card-face card-front" aria-hidden="false">
+      <div class="brand">
+
+        <div class="logo-card" id="logoCard" tabindex="0" role="button">
+          <div class="card-face card-front">
             <img src="images/logo-bar VER - border.jpg" alt="Vers Le Vin logo">
           </div>
 
-          <!-- back face -->
-          <div class="card-face card-back" aria-hidden="true">
-            <div class="back-row" aria-hidden="false">
+          <div class="card-face card-back">
+            <div class="back-row">
               <div class="back-item">
-                <a href="Blog/Essays/essay1.html"><img src="images/essay1.jpg" alt="Essay 1"></a>
+                <a href="Blog/Essays/essay1.html"><img src="images/essay1.jpg"></a>
                 <span>Terroir 1</span>
               </div>
               <div class="back-item">
-                <a href="about.html"><img src="images/imagelast.jpg" alt="Essay 2"></a>
+                <a href="about.html"><img src="images/imagelast.jpg"></a>
                 <span>About</span>
               </div>
               <div class="back-item">
-                <a href="wijnen.html"><img src="images/winesindex.jpg" alt="Essay 3"></a>
+                <a href="wijnen.html"><img src="images/winesindex.jpg"></a>
                 <span>Wijnen</span>
               </div>
             </div>
           </div>
         </div>
+
         <span class="hover-hint">Beweeg Hier ▲</span>
+
       </div>
     </div>
   </main>
@@ -335,51 +359,51 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
     <span>by Stijn Verschelden</span>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
-      controls.forEach(c => {
-        const btn = document.getElementById(c.btnId);
-        if (!btn) return;
-        btn.addEventListener('click', () => {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-          const menu = btn.nextElementSibling;
-          if (menu) menu.style.display = expanded ? 'none' : 'block';
-        });
-        btn.addEventListener('keydown', (e) => { if (e.key==='Escape') { btn.setAttribute('aria-expanded','false'); const menu=btn.nextElementSibling;if(menu)menu.style.display='none';btn.blur();}});
-      });
-      document.addEventListener('click', (e) => {
-        controls.forEach(c => {
-          const btn = document.getElementById(c.btnId);
-          if (!btn) return;
-          const menu = btn.nextElementSibling;
-          if (!menu) return;
-          if (!btn.contains(e.target) && !menu.contains(e.target)) {
-            btn.setAttribute('aria-expanded', 'false');
-            menu.style.display = 'none';
-          }
-        });
-      });
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
+  controls.forEach(c => {
+    const btn = document.getElementById(c.btnId);
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      const menu = btn.nextElementSibling;
+      if (menu) menu.style.display = expanded ? 'none' : 'block';
     });
-
-    (function () {
-      const card = document.getElementById('logoCard');
-      function toggleFlip(force) {
-        if (typeof force === 'boolean') {
-          card.classList.toggle('flipped', force);
-          card.setAttribute('aria-pressed', force.toString());
-        } else {
-          card.classList.toggle('flipped');
-          card.setAttribute('aria-pressed', card.classList.contains('flipped').toString());
-        }
+    btn.addEventListener('keydown', (e) => { 
+      if (e.key==='Escape') { 
+        btn.setAttribute('aria-expanded','false'); 
+        const menu=btn.nextElementSibling;
+        if(menu)menu.style.display='none';
+        btn.blur();
       }
-      card.addEventListener('click', () => toggleFlip());
-      card.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleFlip(); }});
-      card.addEventListener('mouseenter', () => { card.classList.add('flipped'); card.setAttribute('aria-pressed','true'); });
-      card.addEventListener('mouseleave', () => { card.classList.remove('flipped'); card.setAttribute('aria-pressed','false'); });
-    })();
-  </script>
+    });
+  });
+  document.addEventListener('click', (e) => {
+    controls.forEach(c => {
+      const btn = document.getElementById(c.btnId);
+      if (!btn) return;
+      const menu = btn.nextElementSibling;
+      if (!menu) return;
+      if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        btn.setAttribute('aria-expanded', 'false');
+        menu.style.display = 'none';
+      }
+    });
+  });
+});
+
+(function () {
+  const card = document.getElementById('logoCard');
+  function toggleFlip() {
+    card.classList.toggle('flipped');
+  }
+  card.addEventListener('click', toggleFlip);
+  card.addEventListener('mouseenter', () => card.classList.add('flipped'));
+  card.addEventListener('mouseleave', () => card.classList.remove('flipped'));
+})();
+</script>
 
 </body>
 </html>
