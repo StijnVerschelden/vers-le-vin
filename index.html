@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Vers Le Vin</title>
 
   <!-- Caslon Antique -->
@@ -226,6 +227,35 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       pointer-events: none;
     }
     footer span { pointer-events: auto; }
+
+    /* --- MOBILE (max 768px) --- */
+@media (max-width: 768px) {
+
+  /* Make the main container narrower and centered */
+  main {
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Stack elements vertically instead of side-by-side */
+  .wine-row {
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px; /* adjust as needed */
+  }
+
+  /* Resize flipping logos */
+  .wine-flip-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  /* Make text smaller and centered */
+  h1, h2, h3, p {
+    text-align: center;
+  }
+}
+
 
   </style>
 </head>
