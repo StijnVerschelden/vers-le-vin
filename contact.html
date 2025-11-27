@@ -168,6 +168,61 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       pointer-events: none;
     }
     footer span { pointer-events: auto; }
+
+  /* ------------------------------------------------ */
+/* 📱 REAL MOBILE FIXES FOR INDEX PAGE ONLY        */
+/* ------------------------------------------------ */
+@media (max-width: 720px) {
+
+  .hero {
+    padding: 30px 10px;
+    padding-top: 70px;
+    flex-direction: column;
+  }
+
+  :root {
+    --logo-size: 200px;
+  }
+
+  .brand {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .brand-wrap {
+    padding: 10px;
+  }
+
+  .back-item img {
+    height: 100px;
+  }
+
+  .back-row {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hover-hint {
+    bottom: -12px;
+    font-size: 12px;
+  }
+
+  footer {
+     position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      opacity: 0.85;
+      display: flex;
+      justify-content: space-between;
+      width: calc(100% - 20px);
+      padding-right: 10px;
+      pointer-events: none;
+  }
+}
   
 </style>
   
