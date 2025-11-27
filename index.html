@@ -13,6 +13,43 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
+    #ageGate {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.age-modal {
+  background: #F3ECDC;
+  color: #592C38;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 360px;
+  font-family: 'EB Garamond', serif;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.age-modal button {
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background: #592C38;
+  color: white;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.age-modal button:hover {
+  opacity: 0.8;
+}
+
     :root{
       --text-color: #592C38;
       --bg: #F3ECDC;
@@ -26,6 +63,8 @@
     html,body{ height:100%; margin:0; }
 
     body {
+      
+    
       font-family: 'CaslonAntiqueRegular', 'EB Garamond', Georgia, 'Times New Roman', serif;
       background-color: var(--bg);
       color: var(--text-color);
@@ -287,6 +326,16 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
 
 <body>
 
+  <div id="ageGate">
+  <div class="age-modal">
+    <h2>Are you 18 or older?</h2>
+    <p>You must be of legal drinking age to enter this website.</p>
+    <button id="enterBtn">Yes, I am 18+</button>
+    <button id="leaveBtn">No</button>
+  </div>
+</div>
+
+
   <div class="nav-wrap">
     <nav aria-label="Main Navigation">
       <ul>
@@ -365,6 +414,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   </footer>
 
 <script>
+  
 document.addEventListener('DOMContentLoaded', function () {
   const controls = [{ btnId: 'lantBtn' }, { btnId: 'blogBtn' }];
   controls.forEach(c => {
@@ -408,6 +458,27 @@ document.addEventListener('DOMContentLoaded', function () {
   card.addEventListener('mouseenter', () => card.classList.add('flipped'));
   card.addEventListener('mouseleave', () => card.classList.remove('flipped'));
 })();
+
+document.addEventListener("DOMContentLoaded", function() {
+  const gate = document.getElementById("ageGate");
+  const enter = document.getElementById("enterBtn");
+  const leave = document.getElementById("leaveBtn");
+
+  // If they already confirmed earlier, skip
+  if (localStorage.getItem("ageVerified") === "true") {
+    gate.style.display = "none";
+  }
+
+  enter.addEventListener("click", () => {
+    localStorage.setItem("ageVerified", "true");
+    gate.style.display = "none";
+  });
+
+  leave.addEventListener("click", () => {
+    window.location.href = "https://www.google.com"; // or any other redirect
+  });
+});
+
 </script>
 
 </body>
