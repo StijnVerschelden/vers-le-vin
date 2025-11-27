@@ -306,7 +306,7 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   }
 
   .hover-hint {
-    bottom: -10px;
+    bottom: -15px;
     font-size: 10px;
   }
 
@@ -323,10 +323,19 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
       pointer-events: none;
   }
   
- .back-item a {
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
+/* Prevent iOS tap overlay on 3D container */
+.logo-card,
+.card-back,
+.back-row {
+  pointer-events: none;
 }
+
+/* Re-enable taps only on the actual images */
+.back-item a,
+.back-item img {
+  pointer-events: auto;
+}
+
 
 
 }
