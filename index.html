@@ -295,25 +295,26 @@ nav li:hover > .dropdown, nav li:focus-within > .dropdown { display:block; }
   }
 
   .back-item img {
-    height: 100px;
+    height: 120px;
   }
 
   .back-row {
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;   /* ← STACK VERTICALLY */
+    gap: 12px;
+    align-items: center;      /* keep centered */
+    justify-content: flex-start;
   }
 
   .hover-hint {
-    bottom: -12px;
-    font-size: 12px;
+    bottom: -10px;
+    font-size: 10px;
   }
 
   footer {
      position: absolute;
       bottom: 10px;
       left: 10px;
-      font-size: 14px;
+      font-size: 12px;
       opacity: 0.85;
       display: flex;
       justify-content: space-between;
